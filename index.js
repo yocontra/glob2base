@@ -14,5 +14,5 @@ module.exports = function(glob) {
   var cwd = (glob.options && glob.options.cwd) ? glob.options.cwd : process.cwd();
   var rules = glob.minimatch.set[0];
   var basePath = path.normalize(flatten2d(rules).join(path.sep));
-  return path.join(cwd, basePath);
+  return basePath;
 };
