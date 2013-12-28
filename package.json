@@ -1,7 +1,7 @@
 {
   "name": "glob2base",
   "description": "Extracts a base path from a node-glob instance",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "http://github.com/wearefractal/glob2base",
   "repository": "git://github.com/wearefractal/glob2base.git",
   "author": "Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
