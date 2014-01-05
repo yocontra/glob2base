@@ -2,10 +2,15 @@ var path = require('path');
 
 var flatten2d = function(arr){
   var out = [];
+  var flat = true;
   for(var i = 0; i < arr.length; i++) {
-    if (typeof arr[i] !== 'string') break;
+    if (typeof arr[i] !== 'string') {
+      flat = false;
+      break;
+    }
     out.push(arr[i]);
   }
+  if (flat) out.pop(); // last one is a file or specific dir
   return out;
 };
 
