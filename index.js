@@ -1,6 +1,6 @@
 var path = require('path');
 
-var flatten2d = function(arr){
+var flattenGlob = function(arr){
   var out = [];
   var flat = true;
   for(var i = 0; i < arr.length; i++) {
@@ -14,9 +14,35 @@ var flatten2d = function(arr){
   return out;
 };
 
+var flattenExpansion = function(set) {
+  // dirty trick
+  // use the first two items in the set to figure out
+  // where the expansion starts
+  return findCommon(set[0], set[1]);
+};
+
+// algorithm assumes both arrays have the same length
+// because this is how globs work
+var findCommon = function(a1, a2) {
+  var len = a1.length;
+  for (var i = 0; i < len; i++) {
+    if (a1[i] !== a2[i]) return a1.splice(0, i);
+  }
+  return a1; // identical
+};
+
+var setToBase = function(set) {
+  // normal something/*.js
+  if (set.length <= 1) {
+    return flattenGlob(set[0]);
+  }
+  // has expansion
+  return flattenExpansion(set);
+};
+
 module.exports = function(glob) {
   var cwd = (glob.options && glob.options.cwd) ? glob.options.cwd : process.cwd();
-  var rules = glob.minimatch.set[0];
-  var basePath = path.normalize(flatten2d(rules).join(path.sep))+path.sep;
+  var set = glob.minimatch.set;
+  var basePath = path.normalize(setToBase(set).join(path.sep))+path.sep;
   return basePath;
 };

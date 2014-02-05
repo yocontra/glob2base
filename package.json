@@ -1,15 +1,15 @@
 {
   "name": "glob2base",
   "description": "Extracts a base path from a node-glob instance",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "homepage": "http://github.com/wearefractal/glob2base",
   "repository": "git://github.com/wearefractal/glob2base.git",
   "author": "Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
   "main": "./index.js",
   "dependencies": {},
   "devDependencies": {
-    "mocha": "*",
-    "should": "*",
+    "mocha": "~1.17.1",
+    "should": "~3.1.2",
     "glob": "~3.2.7"
   },
   "scripts": {
