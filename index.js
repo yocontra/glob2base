@@ -26,7 +26,7 @@ var flattenExpansion = function(set) {
 var findCommon = function(a1, a2) {
   var len = a1.length;
   for (var i = 0; i < len; i++) {
-    if (a1[i] !== a2[i]) return a1.splice(0, i);
+    if (a1[i] !== a2[i]) return a1.slice(0, i);
   }
   return a1; // identical
 };
