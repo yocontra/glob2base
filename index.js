@@ -28,7 +28,7 @@ var findCommon = function(a1, a2) {
   for (var i = 0; i < len; i++) {
     if (a1[i] !== a2[i]) {
       if(typeof a1[i - 1] == 'string') return a1.slice(0, i);
-      else return a1.slice(0, i - 2); // fix for double bracket expansion
+      return a1.slice(0, i - 1); // fix for double bracket expansion
     }
   }
   return a1; // identical

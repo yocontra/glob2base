@@ -42,6 +42,9 @@ describe('glob2base', function() {
 
   it('should get a base name from a complex brace glob', function() {
     var globber = new glob.Glob("lib/{components,pages}/**/{test,another}/*.txt", {cwd: __dirname});
-    glob2base(globber).should.equal("lib/");
+    glob2base(globber).should.equal("lib/components/");
+
+    var globber2 = new glob.Glob('js/test/**/{images,components}/*.js', {cwd: __dirname});
+    glob2base(globber2).should.equal("js/test/");
   });
 });
