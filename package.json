@@ -3,22 +3,32 @@
   "description": "Extracts a base path from a node-glob instance",
   "version": "0.0.9",
   "homepage": "http://github.com/wearefractal/glob2base",
-  "repository": "git://github.com/wearefractal/glob2base.git",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wearefractal/glob2base.git"
+  },
   "author": "Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
   "main": "./index.js",
   "dependencies": {
     "lodash.findindex": "^2.4.1"
   },
   "devDependencies": {
-    "mocha": "^1.17.1",
-    "should": "^4.0.0",
-    "glob": "^4.0.0"
+    "coveralls": "^2.6.1",
+    "istanbul": "^0.2.3",
+    "jshint": "^2.4.1",
+    "jshint-stylish": "^0.2.0",
+    "mocha": "^1.17.0",
+    "mocha-lcov-reporter": "^0.0.1",
+    "glob": "^4.0.0",
+    "should": "^4.0.0"
   },
   "scripts": {
-    "test": "mocha"
+    "lint": "jshint index.js --reporter node_modules/jshint-stylish/stylish.js --exclude node_modules",
+    "test": "npm run-script lint && mocha --reporter spec",
+    "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
   },
   "engines": {
-    "node": ">= 0.4.0"
+    "node": ">= 0.10"
   },
   "licenses": [
     {

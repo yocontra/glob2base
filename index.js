@@ -1,3 +1,5 @@
+'use strict';
+
 var path = require('path');
 var findIndex = require('lodash.findindex');
 
@@ -11,7 +13,12 @@ var flattenGlob = function(arr){
     }
     out.push(arr[i]);
   }
-  if (flat) out.pop(); // last one is a file or specific dir
+
+  // last one is a file or specific dir
+  // so we pop it off
+  if (flat) {
+    out.pop();
+  }
   return out;
 };
 
@@ -21,11 +28,15 @@ var flattenExpansion = function(set) {
 
   // find index where the diff is
   var idx = findIndex(first, function(v, idx){
-    if (typeof v !== 'string') return true;
+    if (typeof v !== 'string') {
+      return true;
+    }
 
     var matched = toCompare.every(function(arr){
       var v2 = arr[idx];
-      if (typeof v2 !== 'string') return false;
+      if (typeof v2 !== 'string') {
+        return false;
+      }
       return v === v2;
     });
 
@@ -45,7 +56,6 @@ var setToBase = function(set) {
 };
 
 module.exports = function(glob) {
-  var cwd = (glob.options && glob.options.cwd) ? glob.options.cwd : process.cwd();
   var set = glob.minimatch.set;
   var baseParts = setToBase(set);
   var basePath = path.normalize(baseParts.join(path.sep))+path.sep;
