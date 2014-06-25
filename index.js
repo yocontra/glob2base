@@ -1,7 +1,6 @@
 'use strict';
 
 var path = require('path');
-var findIndex = require('lodash.findindex');
 
 var flattenGlob = function(arr){
   var out = [];
@@ -22,6 +21,18 @@ var flattenGlob = function(arr){
   return out;
 };
 
+var findIndex = function (array, callback) {
+  var index = -1,
+      length = array ? array.length : 0;
+
+  while (++index < length) {
+    if (callback(array[index], index)) {
+      return index;
+    }
+  }
+  return -1;
+};
+
 var flattenExpansion = function(set) {
   var first = set[0];
   var toCompare = set.slice(1);
@@ -32,15 +43,9 @@ var flattenExpansion = function(set) {
       return true;
     }
 
-    var matched = toCompare.every(function(arr){
-      var v2 = arr[idx];
-      if (typeof v2 !== 'string') {
-        return false;
-      }
-      return v === v2;
+    return toCompare.some(function(arr){
+      return v !== arr[idx];
     });
-
-    return !matched;
   });
 
   return first.slice(0, idx);
