@@ -1,7 +1,6 @@
 'use strict';
 
 var path = require('path');
-var findIndex = require('lodash.findindex');
 
 var flattenGlob = function(arr){
   var out = [];
@@ -20,6 +19,18 @@ var flattenGlob = function(arr){
     out.pop();
   }
   return out;
+};
+
+var findIndex = function (array, callback) {
+  var index = -1,
+      length = array ? array.length : 0;
+
+  while (++index < length) {
+    if (callback(array[index], index)) {
+      return index;
+    }
+  }
+  return -1;
 };
 
 var flattenExpansion = function(set) {
