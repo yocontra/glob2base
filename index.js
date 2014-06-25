@@ -1,7 +1,6 @@
 'use strict';
 
 var path = require('path');
-var findIndex = require('lodash.findindex');
 
 var flattenGlob = function(arr){
   var out = [];
@@ -22,28 +21,29 @@ var flattenGlob = function(arr){
   return out;
 };
 
+// find index where the diff is
+var diffIndexAt = function (first, toCompare) {
+  var firstLength     = first.length,
+      toCompareLength = toCompare.length;
+
+  for (var idx = 0, v1 = null; idx < firstLength; idx++) {
+    v1 = first[idx];
+    if (typeof v1 !== 'string') { return idx; }
+
+    for (var j = 0; j < toCompareLength; j++) {
+      if (v1 !== toCompare[j][idx]) {
+        return idx;
+      }
+    }
+  }
+  return -1;
+};
+
 var flattenExpansion = function(set) {
   var first = set[0];
   var toCompare = set.slice(1);
 
-  // find index where the diff is
-  var idx = findIndex(first, function(v, idx){
-    if (typeof v !== 'string') {
-      return true;
-    }
-
-    var matched = toCompare.every(function(arr){
-      var v2 = arr[idx];
-      if (typeof v2 !== 'string') {
-        return false;
-      }
-      return v === v2;
-    });
-
-    return !matched;
-  });
-
-  return first.slice(0, idx);
+  return first.slice(0, diffIndexAt(first, toCompare));
 };
 
 var setToBase = function(set) {
