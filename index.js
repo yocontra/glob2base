@@ -39,20 +39,16 @@ var diffIndexAt = function (first, toCompare) {
   return -1;
 };
 
-var flattenExpansion = function(set) {
+var setToBase = function(set) {
   var first = set[0];
+  // normal something/*.js
+  if (set.length <= 1) {
+    return flattenGlob(first);
+  }
+  // has expansion
   var toCompare = set.slice(1);
 
   return first.slice(0, diffIndexAt(first, toCompare));
-};
-
-var setToBase = function(set) {
-  // normal something/*.js
-  if (set.length <= 1) {
-    return flattenGlob(set[0]);
-  }
-  // has expansion
-  return flattenExpansion(set);
 };
 
 module.exports = function(glob) {
