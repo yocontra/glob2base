@@ -43,11 +43,9 @@ var flattenExpansion = function(set) {
       return true;
     }
 
-    var matched = toCompare.every(function(arr){
-      return v === arr[idx];
+    return toCompare.some(function(arr){
+      return v !== arr[idx];
     });
-
-    return !matched;
   });
 
   return first.slice(0, idx);
