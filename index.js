@@ -57,7 +57,12 @@ var setToBase = function(set) {
 
 module.exports = function(glob) {
   var set = glob.minimatch.set;
-  var baseParts = setToBase(set);
+  return minimatchToBase(set);
+};
+
+var minimatchToBase = module.exports.minimatch = function(minimatchSet) {
+  var baseParts = setToBase(minimatchSet);
   var basePath = path.normalize(baseParts.join(path.sep))+path.sep;
   return basePath;
 };
+
