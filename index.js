@@ -33,11 +33,7 @@ var flattenExpansion = function(set) {
     }
 
     var matched = toCompare.every(function(arr){
-      var v2 = arr[idx];
-      if (typeof v2 !== 'string') {
-        return false;
-      }
-      return v === v2;
+      return v !== arr[idx];
     });
 
     return !matched;
