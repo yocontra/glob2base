@@ -10,7 +10,7 @@
   "author": "Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
   "main": "./index.js",
   "dependencies": {
-    "lodash.findindex": "^2.4.1"
+    "lodash": "^2.4.1"
   },
   "devDependencies": {
     "coveralls": "^2.6.1",

@@ -1,7 +1,8 @@
 'use strict';
 
 var path = require('path');
-var findIndex = require('lodash.findindex');
+var _ = require('lodash');
+var findIndex = _.findIndex;
 
 var flattenGlob = function(arr){
   var out = [];
