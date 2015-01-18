@@ -35,8 +35,6 @@ glob2base(new glob.Glob('css/test/{a,b}/*.css'));
 glob2base(new glob.Glob('pages/whatever/index.html'));
 ```
 
-## Like what we do?
-
 [gittip-url]: https://www.gittip.com/WeAreFractal/
 [gittip-image]: http://img.shields.io/gittip/WeAreFractal.svg
 
