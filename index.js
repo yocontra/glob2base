@@ -4,7 +4,9 @@ var path = require('path');
 var findIndex = require('find-index');
 
 var flattenGlob = function(arr){
-  if (!arr) arr = [];
+  if (!arr) {
+    arr = [];
+  }
   var out = [];
   var flat = true;
   for(var i = 0; i < arr.length; i++) {
