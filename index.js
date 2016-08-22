@@ -6,12 +6,14 @@ var findIndex = require('find-index');
 var flattenGlob = function(arr){
   var out = [];
   var flat = true;
-  for(var i = 0; i < arr.length; i++) {
-    if (typeof arr[i] !== 'string') {
-      flat = false;
-      break;
+  if(Array.isArray(arr)) {
+    for (var i = 0; i < arr.length; i++) {
+      if (typeof arr[i] !== 'string') {
+        flat = false;
+        break;
+      }
+      out.push(arr[i]);
     }
-    out.push(arr[i]);
   }
 
   // last one is a file or specific dir
